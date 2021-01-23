@@ -1,7 +1,9 @@
 # GPipe
-Inter communication between GPU processes invoked from different CPU processes.
+Inter communication between GPU processes invoked from different CPU processes using the new low level NVIDIA API.
 
-
+# Definitions
+- Three element gpipe - a simple solution, for performance comparcence. The solution uses Linux named pipe to pass communication through the CPU
+- Naive solution - communication between GPU processec invoked from the same CPU process 
 
 # API
 
