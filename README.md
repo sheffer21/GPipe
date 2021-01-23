@@ -1,2 +1,43 @@
 # GPipe
-Inter communication between GPU processes
+Inter communication between GPU processes invoked from different CPU processes.
+
+
+
+**API**
+
+struct GPipe
+{
+    // The GPipe constructor
+    // Parameters:
+    // - pipe_name - The GPipe name. must be unique per pipe instance
+    // - is_consumer - Is the caller a consumer (Consumer or Producer)
+    // - size_multiplier – Max number of messages per thread in the buffer
+    GPipe(const char* pipe_name, 
+          bool is_consumer, 
+          int size_multiplier);
+    
+    // The GPipe destructor
+    // Close the communication and perform cleanup
+    void gclose();
+    
+    // Initialize the pipe. 
+    // Must be called from both pipe ends
+    void init();
+    
+    // Read message from pipe
+    // Parameters:
+    // - message - Pointer to the reader's buffer
+    // Copies the message to the reader's buffer. All the kernel 
+    // thread must call this function to read the messages.
+    // Returns only when all the kernel threads receive a message
+    void gread(message_t* message);
+    
+    
+    // Write message to pipe
+    // Parameters:
+    // - message - Pointer to the message
+    // Copies the message to the pipe buffer.
+    // Blocking until the buffer has a writing slot
+    void gwrite(message_t* message);
+}
+
