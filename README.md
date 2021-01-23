@@ -3,18 +3,15 @@ Inter communication between GPU processes invoked from different CPU processes.
 
 
 
-**API**
+# API
 
-struct GPipe
-{
+
     // The GPipe constructor
     // Parameters:
     // - pipe_name - The GPipe name. must be unique per pipe instance
     // - is_consumer - Is the caller a consumer (Consumer or Producer)
     // - size_multiplier – Max number of messages per thread in the buffer
-    GPipe(const char* pipe_name, 
-          bool is_consumer, 
-          int size_multiplier);
+    GPipe(const char* pipe_name, bool is_consumer, int size_multiplier);
     
     // The GPipe destructor
     // Close the communication and perform cleanup
@@ -39,5 +36,5 @@ struct GPipe
     // Copies the message to the pipe buffer.
     // Blocking until the buffer has a writing slot
     void gwrite(message_t* message);
-}
+
 
