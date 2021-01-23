@@ -296,7 +296,7 @@ def compare_run_variables_with_no_pipe_type(runA, runB):
 
 
 def getResultFiles(dirName=""):
-    results_dir_path = f'../{dirName}'
+    results_dir_path = f'./{dirName}'
     files = [join(results_dir_path, f)
              for f in listdir(results_dir_path)
              if f.endswith('.csv') and isfile(join(results_dir_path, f))]
@@ -405,7 +405,7 @@ def plotSyncRateVSLatency():
 
     pipeSide = ["consumer", "producer"]
     for side in pipeSide:
-        syncRateTestFiles = getResultFiles(F"Sync rate - small buffer/{side}")
+        syncRateTestFiles = getResultFiles(F"Sync rate optimization/Sync rate - small buffer/{side}")
         plotParamVsLatency(syncRateTestFiles, getSyncRateValue, f"GPipe {side}", xTitle, paramName)
 
 
